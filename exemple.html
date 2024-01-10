@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire de Type de Médicament</title>
+    <style>
+        /* Styles pour aligner les boutons radio */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .radio-group label {
+            margin-bottom: 5px;
+        }
+
+        /* Styles pour masquer les sous-questions par défaut */
+        .sous-question {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form action="traitement_formulaire.php" method="post">
+        <p>Type de médicament acheté :</p>
+        
+        <div class="checkbox-group">
+            <input type="checkbox" id="Anti" name="type_medoc[]" value="Antibiotique" data-target="sousQuestionAutre_Anti">
+            <label for="Anti">Antibiotique</label>
+            
+            <div class="sous-question" id="sousQuestionAutre_Anti">
+                <label for="autreQuestion_Anti">Nombre de plaquettes pour Antibiotique : </label>
+                <input type="number" id="autreQuestion_Anti" name="autre_question_Anti">
+            </div>
+        
+            <input type="checkbox" id="Antipy" name="type_medoc[]" value="Antipyrétique" data-target="sousQuestionAutre_Antipy">
+            <label for="Antipy">Antipyrétique</label>
+            
+            <div class="sous-question" id="sousQuestionAutre_Antipy">
+                <label for="autreQuestion_Antipy">Nombre de plaquettes pour Antipyrétique : </label>
+                <input type="number" id="autreQuestion_Antipy" name="autre_question_Antipy">
+            </div>
+        
+            <input type="checkbox" id="Anta" name="type_medoc[]" value="Antalgique" data-target="sousQuestionAutre_Anta">
+            <label for="Anta">Antalgique</label>
+            
+            <div class="sous-question" id="sousQuestionAutre_Anta">
+                <label for="autreQuestion_Anta">Nombre de plaquettes pour Antalgique : </label>
+                <input type="number" id="autreQuestion_Anta" name="autre_question_Anta">
+            </div>
+        
+            <input type="checkbox" id="Antidi" name="type_medoc[]" value="Antidiarrhéique" data-target="sousQuestionAntidi">
+            <label for="Antidi">Antidiarrhéique</label>
+            
+            <div class="sous-question" id="sousQuestionAntidi">
+                <label for="autreQuestionAntidi">Nombre de plaquettes pour Antidiarrhéique : </label>
+                <input type="number" id="autreQuestionAntidi" name="autre_question_antidi">
+            </div>
+        
+            <input type="checkbox" id="Vit" name="type_medoc[]" value="Vitamine C" data-target="sousQuestionAutre_Vit">
+            <label for="Vit">Vitamine C</label>
+            
+            <div class="sous-question" id="sousQuestionAutre_Vit">
+                <label for="autreQuestion_Vit">Nombre de plaquettes pour Vitamine C : </label>
+                <input type="number" id="autreQuestion_Vit" name="autre_question_Vit">
+            </div>
+        </div>
+        
+        <button type="submit">Soumettre</button>
+    </form>
+
+    <script>
+        // Afficher la sous-question appropriée lorsque des cases sont cochées
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const sousQuestions = document.querySelectorAll('.sous-question');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const sousQuestionId = this.getAttribute('data-target');
+                const sousQuestion = document.getElementById(sousQuestionId);
+                
+                if (this.checked) {
+                    sousQuestion.style.display = 'block';
+                } else {
+                    sousQuestion.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
