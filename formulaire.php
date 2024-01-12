@@ -54,7 +54,7 @@
         </nav>
 </div>
   </header><br><br>
-	<form method="POST" action="client_données.php">
+	<form method="POST" action="action.php">
   <div class="titre" >Veillez saisisser les information concernants le client</div>
     <br>
 		<label for="id">Identifiant :</label>
