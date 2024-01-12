@@ -147,4 +147,14 @@ var myLineChart = new Chart(ctx, {
                     </div>
                 </main>
     </body>
+        <footer>
+  <img src= "sary\logo-ministere-sante.jpg" alt="Logo-Ministere">
+  <p><script type="text/javascript"> 
+	  var today=new Date();
+  </script>©<script>
+	 console.log(today.getFullYear());
+  </script> Ministère de la Santé Pulblidue de Madagascar<br>
+<br>Direction de la Veille Sanitaire, de la Surveillance Epidémiologique et Riposte</p>
+    <p><a href="#">Mentions légales</a> | <a href="#">Politique de confidentialité</a></p>
+</footer>
 </html>
