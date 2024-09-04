@@ -37,4 +37,4 @@ steps:
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     enableXmlTransform: true
     enableXmlVariableSubstitution: true
-  displayName: 'Déployer l application web'
+  displayName: 'https://dev.azure.com/erictonih/Pharmaco'
