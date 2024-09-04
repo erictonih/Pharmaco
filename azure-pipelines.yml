@@ -1,26 +1,40 @@
-# PHP
-# Test and package your PHP project.
-# Add steps that run tests, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/php
-
+# Déclencheur de pipeline sur la branche main
 trigger:
 - main
 
+# Spécification de l'image de la machine virtuelle
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
+# Définition des variables
 variables:
-  phpVersion: 7.2
+  phpVersion: '7.2'
 
+# Étapes du pipeline
 steps:
+
+# Installer et configurer la version PHP spécifiée
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
     sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
     sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
     sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
     sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
-    php -version
-  displayName: 'Use PHP version $(phpVersion)'
+    php -v
+  displayName: 'Configurer la version PHP $(phpVersion)'
 
-- script: composer install --no-interaction --prefer-dist
-  displayName: 'composer install'
+# Installer les dépendances PHP avec Composer
+- script: |
+    composer install --no-interaction --prefer-dist
+  displayName: 'Installer les dépendances avec Composer'
+
+# Déployer l'application web à l'aide de l'extension AzureRmWebAppDeployment
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'PublishProfile'
+    PublishProfilePath: '$(System.DefaultWorkingDirectory)/**/*.pubxml'
+    PublishProfilePassword: 'Rakotonirina24'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    enableXmlTransform: true
+    enableXmlVariableSubstitution: true
+  displayName: 'Déployer l application web'
